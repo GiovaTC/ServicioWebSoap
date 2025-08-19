@@ -1,0 +1,84 @@
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://tempuri.org/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://tempuri.org/" name="ICalculadoraService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <xsd:element name="Sumar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="a" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="b" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SumarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SumarResult" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Restar">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="a" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="b" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="RestarResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="RestarResult" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICalculadoraService_Sumar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Sumar" />
+  </wsdl:message>
+  <wsdl:message name="ICalculadoraService_Sumar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SumarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICalculadoraService_Restar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Restar" />
+  </wsdl:message>
+  <wsdl:message name="ICalculadoraService_Restar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RestarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICalculadoraService">
+    <wsdl:operation name="Sumar">
+      <wsdl:input message="tns:ICalculadoraService_Sumar_InputMessage" />
+      <wsdl:output message="tns:ICalculadoraService_Sumar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Restar">
+      <wsdl:input message="tns:ICalculadoraService_Restar_InputMessage" />
+      <wsdl:output message="tns:ICalculadoraService_Restar_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICalculadoraService_soap" type="tns:ICalculadoraService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Sumar">
+      <soap:operation soapAction="http://tempuri.org/ICalculadoraService/Sumar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Restar">
+      <soap:operation soapAction="http://tempuri.org/ICalculadoraService/Restar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ICalculadoraService">
+    <wsdl:port name="BasicHttpBinding_ICalculadoraService_soap" binding="tns:BasicHttpBinding_ICalculadoraService_soap">
+      <soap:address location="https://localhost:7010/Calculadora.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
